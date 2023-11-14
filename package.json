@@ -1,0 +1,52 @@
+{
+  "name": "polyspace-actions",
+  "version": "23.2.0",
+  "description": "Run Polyspace via Github Actions.",
+  "scripts": {
+    "build:polyspace-bug-finder": "ncc build lib/polyspaceBugFinderWrapper.ts -o dist/polyspaceBugFinder",
+    "build:polyspace-findings": "ncc build lib/polyspaceFindings.ts -o dist/polyspaceFindings",
+    "build": "concurrently 'npm:build:polyspace-bug-finder' 'npm:build:polyspace-findings'",
+    "removeNPMAbsolutePaths": "removeNPMAbsolutePaths . --force",
+    "lint": "npx eslint --cache lib --fix",
+    "test": "mocha -r ts-node/register test/*.ts --config .mocharc.json"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "@vercel/ncc": "^0.36.0",
+    "concurrently": "^7.6.0",
+    "parse-diff": "^0.11.1",
+    "removeNPMAbsolutePaths": "^3.0.1",
+    "string-argv": "^0.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/polyspace-actions/polyspace-actions"
+  },
+  "keywords": [
+    "Static",
+    "Analysis"
+  ],
+  "author": "Mathworks",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chai": "^4.3.5",
+    "@types/chai-as-promised": "^7.1.5",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.2.5",
+    "@types/rewire": "^2.5.28",
+    "@typescript-eslint/eslint-plugin": "^5.59.9",
+    "@typescript-eslint/parser": "^5.59.9",
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "eslint": "^8.42.0",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "mocha": "^10.2.0",
+    "rewire": "^6.0.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
+}

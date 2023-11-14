@@ -1,0 +1,71 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "unused-imports",
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "semi": [
+      "error",
+      "always",
+      {
+        omitLastInOneLineBlock: true,
+      },
+    ],
+    "no-console": 2,
+    "no-unused-expressions": "off",
+    "space-before-function-paren": [
+      "error",
+      {
+        anonymous: "always",
+        named: "never",
+        asyncArrow: "always",
+      },
+    ],
+        indent: "off",
+        "@typescript-eslint/indent": [
+            "error",
+            4,
+        ],
+    quotes: [
+      "error",
+      "single",
+    ],
+    // False positive on Typescript code in enums, use the rule below it instead
+    "no-unused-vars": "off",
+    // Identifiers started with an underscore are ignored
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        vars: "all",
+        varsIgnorePattern: "^_",
+        args: "after-used",
+        argsIgnorePattern: "^_",
+      },
+    ],
+    "unused-imports/no-unused-imports": "error",
+    // "@typescript-eslint/no-floating-promises": "error",
+    // disallows awaiting a value that is not a "Thenable" (an object which has then method, such as a Promise)
+    // "@typescript-eslint/await-thenable": "error",
+    // warns async functions which have no await expression
+    // "@typescript-eslint/require-await": "error",
+    "prefer-template": "error",
+    "no-useless-concat": "error",
+    // avoid using arrow functions in mocha tests to avoid superseeding "this".
+    // which may make tests fail due timeouts not being taken into account.
+    // "es/no-arrow-functions": "error",
+    // do not use async in "forEach" loops, prefer "for of" instead
+    // "no-async-foreach/no-async-foreach": "error",
+  },
+  ignorePatterns: [
+    "dist",
+    ".eslintrc",
+  ],
+
+}

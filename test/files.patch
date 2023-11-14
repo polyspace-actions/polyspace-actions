@@ -1,0 +1,119 @@
+diff --git a/dist/qualityGate/index.js b/dist/qualityGate/index.js
+index 5597c28..6dafa08 100644
+--- a/dist/qualityGate/index.js
++++ b/dist/qualityGate/index.js
+@@ -238,13 +238,22 @@ class GitDiffFile {
+     }
+     getPosition(targetLine) {
+         let position = 0;
+-        for (const location of this.locations) {
+-            const relPos = location.getLocalPosition(targetLine);
+-            if (relPos === undefined) {
+-                position += location.getLength();
++        for (const chunk of this.chunks) {
++            const index = chunk.changes.findIndex(function (change) {
++                //We don't care about DeleteChanges because we won't have a finding for a deleted line
++                if (change.type == 'add' && change.ln == targetLine) {
++                    return true;
++                }
++                else if (change.type == 'normal' && change.ln2 == targetLine) {
++                    return true;
++                }
++                return false;
++            });
++            if (index === -1) {
++                position += chunk.changes.length;
+             }
+             else {
+-                return position + relPos;
++                return position + index + 1;
+             }
+         }
+     }
+diff --git a/example/helper.cpp b/example/helper.cpp
+index 8842626..14b7af8 100644
+--- a/example/helper.cpp
++++ b/example/helper.cpp
+@@ -9,9 +9,5 @@ int helper::function()
+ #else
+  int val = 1;
+ #endif
+-
+-
+  return val +3;
+- //Multi line
+- //introduction of stuff
+ }
+diff --git a/example/main.cpp b/example/main.cpp
+index 4a0e47a..b1db096 100644
+--- a/example/main.cpp
++++ b/example/main.cpp
+@@ -16,18 +16,17 @@ int fun(int seed)
+     return val * seed + 1;
+ }
+ 
+-
+-
+ int main()
+ {
+     auto ptr = getBuff();
+-    delete ptr;int seed = helper::function();
++    delete ptr;
++
++    int seed = helper::function();
+     if(seed = 1)
+     {
+         int num = fun(seed);
+         return 3/num;
+     }
+-    //Multi line
+     else
+     {
+         return fun(0);
+diff --git a/lib/matchedResults.ts b/lib/matchedResults.ts
+index 05470c7..eaed998 100644
+--- a/lib/matchedResults.ts
++++ b/lib/matchedResults.ts
+@@ -39,13 +39,23 @@ class GitDiffFile{
+   public getPosition(targetLine: number) : number | undefined {
+     let position = 0;
+ 
+-    for(const location of this.locations) {
+-      const relPos : number | undefined = location.getLocalPosition(targetLine);
+-      if(relPos === undefined){
+-        position += location.getLength();
++    for (const chunk of this.chunks) {
++      const index = chunk.changes.findIndex( function (change){
++        //We don't care about DeleteChanges because we won't have a finding for a deleted line
++        if(change.type == 'add' && change.ln == targetLine){
++          return true;
++        }
++        else if(change.type == 'normal' && change.ln2 == targetLine){
++          return true;
++        }
++        return false;
++      });
++      
++      if(index === -1){
++        position += chunk.changes.length;
+       }
+-      else{ 
+-        return position + relPos;
++      else{
++        return position+index+1;
+       }
+     }
+   }
+diff --git a/test/gitDiffTestDebugOnly.js b/test/gitDiffTestDebugOnly.js
+index bb249ad..192fce6 100644
+--- a/test/gitDiffTestDebugOnly.js
++++ b/test/gitDiffTestDebugOnly.js
+@@ -1,7 +1,7 @@
+ const parseDiff = require('parse-diff');
+ const child_prc = require('child_process');
+ 
+-const sha = 'f26bf60a4a5c103dec494f730b21c2044650387e';
++const sha = '9d75744bbd1daffb22943e63dadf785e9c9ff234';
+ const output = child_prc.execSync(`git diff ${sha}~ ${sha}`).toString('utf-8');
+ const gitDiff  = parseDiff(output);
+ 

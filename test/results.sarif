@@ -1,0 +1,337 @@
+{
+  "$schema" : "https://docs.oasis-open.org/sarif/sarif/v2.1.0/cos02/schemas/sarif-schema-2.1.0.json",
+  "version" : "2.1.0",
+  "runs" : [ {
+    "tool" : {
+      "driver" : {
+        "name" : "Bug Finder",
+        "fullName" : "Polyspace Bug Finder Server",
+        "semanticVersion" : "R2023b Prerelease Update 3",
+        "organization" : "MathWorks",
+        "rules" : [ {
+          "id" : "NON_INIT_VAR",
+          "name" : "Non-initialized variable",
+          "properties" : {
+            "metaFamily" : "Defect",
+            "family" : "Defect",
+            "group" : "Data flow",
+            "impact" : "High"
+          }
+        }, {
+          "id" : "BAD_EQUAL_USE",
+          "name" : "Invalid use of = operator",
+          "properties" : {
+            "metaFamily" : "Defect",
+            "family" : "Defect",
+            "group" : "Programming",
+            "impact" : "Medium"
+          }
+        }, {
+          "id" : "DEAD_CODE",
+          "name" : "Dead code",
+          "properties" : {
+            "metaFamily" : "Defect",
+            "family" : "Defect",
+            "group" : "Data flow",
+            "impact" : "Low"
+          }
+        }, {
+          "id" : "UNMODIFIED_VAR_NOT_CONST",
+          "name" : "Unmodified variable not const-qualified",
+          "properties" : {
+            "metaFamily" : "Defect",
+            "family" : "Defect",
+            "group" : "Good practice",
+            "impact" : "Low"
+          }
+        } ]
+      }
+    },
+    "properties" : {
+      "language" : "CPP"
+    },
+    "artifacts" : [ {
+      "location" : {
+        "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/main.cpp"
+      },
+      "mimeType" : "text/x-c++",
+      "sourceLanguage" : "cplusplus"
+    }, {
+      "location" : {
+        "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/helper.cpp"
+      },
+      "mimeType" : "text/x-c++",
+      "sourceLanguage" : "cplusplus"
+    } ],
+    "results" : [ {
+      "ruleId" : "NON_INIT_VAR",
+      "ruleIndex" : 0,
+      "message" : {
+        "text" : "[ Local variable val is read before it is initialized.\nAdditional Info:\nRisk: Reading non-initialized memory can result in unexpected values.\nFix: Initialize the local variable before use.](https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250577)"
+      },
+      "level" : "error",
+      "rank" : 100,
+      "kind" : "fail",
+      "properties" : {
+        "databaseId" : 29250577,
+        "information" : "Impact: High",
+        "color" : "Red",
+        "hasOrangeSource" : false,
+        "key" : "316C397AE4EB522749A87DB2144A4C98",
+        "cwe" : "CWE-456 CWE-457 CWE-908",
+        "className" : "Global Scope",
+        "justified" : false,
+        "severity" : "Unset",
+        "comment" : "",
+        "status" : "Unreviewed"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "index" : 0,
+            "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/main.cpp"
+          },
+          "region" : {
+            "startLine" : 16,
+            "startColumn" : 12
+          }
+        },
+        "logicalLocations" : [ {
+          "fullyQualifiedName" : "fun(int)",
+          "kind" : "function"
+        } ]
+      } ],
+      "hostedViewerUri" : "https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250577"
+    }, {
+      "ruleId" : "BAD_EQUAL_USE",
+      "ruleIndex" : 1,
+      "message" : {
+        "text" : "[ Use of '=' instead of '==' in a logical expression.](https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250574)"
+      },
+      "level" : "error",
+      "rank" : 100,
+      "kind" : "fail",
+      "properties" : {
+        "databaseId" : 29250574,
+        "information" : "Impact: Medium",
+        "color" : "Red",
+        "hasOrangeSource" : false,
+        "key" : "64D4121488D7A251AA0562F5AAD4A23164",
+        "cwe" : "CWE-480 CWE-481",
+        "className" : "Global Scope",
+        "justified" : false,
+        "severity" : "Unset",
+        "comment" : "",
+        "status" : "Unreviewed"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "index" : 0,
+            "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/main.cpp"
+          },
+          "region" : {
+            "startLine" : 25,
+            "startColumn" : 13
+          }
+        },
+        "logicalLocations" : [ {
+          "fullyQualifiedName" : "main()",
+          "kind" : "function"
+        } ]
+      } ],
+      "hostedViewerUri" : "https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250574"
+    }, {
+      "ruleId" : "DEAD_CODE",
+      "ruleIndex" : 2,
+      "message" : {
+        "text" : "[ If-condition always evaluates to true.\nDead branch from line 31 to line 33.](https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250578)"
+      },
+      "level" : "error",
+      "rank" : 100,
+      "kind" : "fail",
+      "properties" : {
+        "databaseId" : 29250578,
+        "information" : "Impact: Low",
+        "color" : "Red",
+        "hasOrangeSource" : false,
+        "key" : "23A611A241887D1AF488519B",
+        "cwe" : "CWE-561 CWE-570 CWE-571",
+        "className" : "Global Scope",
+        "justified" : false,
+        "severity" : "Unset",
+        "comment" : "",
+        "status" : "Unreviewed"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "index" : 0,
+            "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/main.cpp"
+          },
+          "region" : {
+            "startLine" : 25,
+            "startColumn" : 8
+          }
+        },
+        "logicalLocations" : [ {
+          "fullyQualifiedName" : "main()",
+          "kind" : "function"
+        } ]
+      } ],
+      "hostedViewerUri" : "https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250578"
+    }, {
+      "ruleId" : "UNMODIFIED_VAR_NOT_CONST",
+      "ruleIndex" : 3,
+      "message" : {
+        "text" : "[ The value of variable 'num' does not change after initialization. The variable can be declared 'const'.](https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250576)"
+      },
+      "level" : "error",
+      "rank" : 100,
+      "kind" : "fail",
+      "properties" : {
+        "databaseId" : 29250576,
+        "information" : "Impact: Low",
+        "color" : "Red",
+        "hasOrangeSource" : false,
+        "key" : "23E655274D9E114A642951225FAC0592F5C9D32A5F863D72358A4C19",
+        "className" : "Global Scope",
+        "justified" : false,
+        "severity" : "Unset",
+        "comment" : "",
+        "status" : "Unreviewed"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "index" : 0,
+            "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/main.cpp"
+          },
+          "region" : {
+            "startLine" : 27,
+            "startColumn" : 13
+          }
+        },
+        "logicalLocations" : [ {
+          "fullyQualifiedName" : "main()",
+          "kind" : "function"
+        } ]
+      } ],
+      "hostedViewerUri" : "https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250576"
+    }, {
+      "ruleId" : "UNMODIFIED_VAR_NOT_CONST",
+      "ruleIndex" : 3,
+      "message" : {
+        "text" : "[ The pointer 'ptr' does not point to a different location after initialization. The pointer can be declared as 'T* const'.](https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250575)"
+      },
+      "level" : "error",
+      "rank" : 100,
+      "kind" : "fail",
+      "properties" : {
+        "databaseId" : 29250575,
+        "information" : "Impact: Low",
+        "color" : "Red",
+        "hasOrangeSource" : false,
+        "key" : "9113AA93A64F88253294A811AF568249FAE4E915AF439E399A4527",
+        "className" : "Global Scope",
+        "justified" : false,
+        "severity" : "Unset",
+        "comment" : "",
+        "status" : "Unreviewed"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "index" : 0,
+            "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/main.cpp"
+          },
+          "region" : {
+            "startLine" : 21,
+            "startColumn" : 10
+          }
+        },
+        "logicalLocations" : [ {
+          "fullyQualifiedName" : "main()",
+          "kind" : "function"
+        } ]
+      } ],
+      "hostedViewerUri" : "https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250575"
+    }, {
+      "ruleId" : "UNMODIFIED_VAR_NOT_CONST",
+      "ruleIndex" : 3,
+      "message" : {
+        "text" : "[ The value of variable 'val' does not change after initialization. The variable can be declared 'const'.](https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250573)"
+      },
+      "level" : "error",
+      "rank" : 100,
+      "kind" : "fail",
+      "properties" : {
+        "databaseId" : 29250573,
+        "information" : "Impact: Low",
+        "color" : "Red",
+        "hasOrangeSource" : false,
+        "key" : "8953AA93A64F88253294A811AF568249FAE4E915AF439E399A4507",
+        "className" : "Global Scope",
+        "justified" : false,
+        "severity" : "Unset",
+        "comment" : "",
+        "status" : "Unreviewed"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "index" : 0,
+            "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/main.cpp"
+          },
+          "region" : {
+            "startLine" : 15,
+            "startColumn" : 9
+          }
+        },
+        "logicalLocations" : [ {
+          "fullyQualifiedName" : "fun(int)",
+          "kind" : "function"
+        } ]
+      } ],
+      "hostedViewerUri" : "https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250573"
+    }, {
+      "ruleId" : "UNMODIFIED_VAR_NOT_CONST",
+      "ruleIndex" : 3,
+      "message" : {
+        "text" : "[ The value of variable 'val' does not change after initialization. The variable can be declared 'const'.](https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250572)"
+      },
+      "level" : "error",
+      "rank" : 100,
+      "kind" : "fail",
+      "properties" : {
+        "databaseId" : 29250572,
+        "information" : "Impact: Low",
+        "color" : "Red",
+        "hasOrangeSource" : false,
+        "key" : "8903AA93A64F88253294A811AF568249FAE4E915AF439E399A45A6",
+        "className" : "helper",
+        "justified" : false,
+        "severity" : "Unset",
+        "comment" : "",
+        "status" : "Unreviewed"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "index" : 1,
+            "uri" : "file:/home/git/polyspace-actions/actions-runner/_work/polyspace-actions/polyspace-actions/example/helper.cpp"
+          },
+          "region" : {
+            "startLine" : 10,
+            "startColumn" : 6
+          }
+        },
+        "logicalLocations" : [ {
+          "fullyQualifiedName" : "helper::function()",
+          "kind" : "function"
+        } ]
+      } ],
+      "hostedViewerUri" : "https://test-server:9443/metrics/index.html?a=review&p=4342&r=11771&fid=29250572"
+    } ]
+  } ]
+}
