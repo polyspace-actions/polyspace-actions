@@ -1,10 +1,10 @@
-// Copyright 2023 The MathWorks, Inc.
+// Copyright 2023-2024 The MathWorks, Inc.
 
 import { spawnProcess } from './spawnProcess';
 import { getCwd } from './getCwd';
 
 export function getTargetVersion() {
-    return 'R2023b';
+    return 'R2024a';
 }
 
 // and matches its output to get the current polyspace version

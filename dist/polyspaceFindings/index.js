@@ -31929,7 +31929,7 @@ exports.polyspaceFindingsPullRequestContext = polyspaceFindingsPullRequestContex
 
 "use strict";
 
-// Copyright 2023 The MathWorks, Inc.
+// Copyright 2023-2024 The MathWorks, Inc.
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -31977,7 +31977,8 @@ function annotateCommit(findingsOptions, findingsValues, commitSha) {
             const matches = (0, matchedResults_1.matchedResults)(findingsValues.NonJustifiedResults, getReq.data);
             let notShownAbove = '';
             if (findingsValues.NonJustifiedResults.length - matches.length > 0) {
-                notShownAbove = `, ${findingsValues.NonJustifiedResults.length - matches.length} of which are not shown above`;
+                let conjugatedVerb = findingsValues.NonJustifiedResults.length == 1 ? 'is' : 'are';
+                notShownAbove = `, ${findingsValues.NonJustifiedResults.length - matches.length} of which ${conjugatedVerb} not shown above.`;
             }
             const finding_s = findingsValues.NonJustifiedResults.length == 1 ? 'finding' : 'findings';
             yield octokit.rest.repos.createCommitComment(Object.assign(Object.assign({}, github.context.repo), { commit_sha: commitSha, body: `Found ${findingsValues.NonJustifiedResults.length} ${finding_s} in total${notShownAbove}. ${findingsValues.getFormatedAccessString()}` }));

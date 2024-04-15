@@ -7,7 +7,7 @@
         "driver" : {
           "name" : "Bug Finder",
           "fullName" : "Polyspace Bug Finder Server",
-          "semanticVersion" : "R2023b Prerelease Update 3",
+          "semanticVersion" : "R2024a Prerelease Update 3",
           "organization" : "MathWorks",
           "rules" : [ {
             "id" : "NON_INIT_VAR",

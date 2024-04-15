@@ -1,4 +1,4 @@
-// Copyright 2023 The MathWorks, Inc.
+// Copyright 2023-2024 The MathWorks, Inc.
 
 import * as github from '@actions/github';
 import { InputPolyspaceFindingsOptions, PolyspaceFindingsValues} from './options';
@@ -17,13 +17,14 @@ async function annotateCommit(findingsOptions: InputPolyspaceFindingsOptions, fi
 
     if (getReq.status === 200) {
         const matches = matchedResults(findingsValues.NonJustifiedResults, getReq.data);
-        
+
         let notShownAbove = '';
         if (findingsValues.NonJustifiedResults.length - matches.length > 0){
-            notShownAbove =`, ${findingsValues.NonJustifiedResults.length - matches.length} of which are not shown above`;
+            let conjugatedVerb = findingsValues.NonJustifiedResults.length == 1 ? 'is' : 'are';
+            notShownAbove =`, ${findingsValues.NonJustifiedResults.length - matches.length} of which ${conjugatedVerb} not shown above.`;
         }
-        const finding_s = findingsValues.NonJustifiedResults.length == 1 ? 'finding' : 'findings'; 
-        
+        const finding_s = findingsValues.NonJustifiedResults.length == 1 ? 'finding' : 'findings';
+
         await octokit.rest.repos.createCommitComment({
             ...github.context.repo,
             commit_sha: commitSha,
@@ -61,7 +62,7 @@ export async function polyspaceFindingsPushContext(findingsOptions : InputPolysp
     logDebug(`${unjustifiedFindings} not marked as "justified" in SARIF file`);
     //If Access is not available point to the current commit
     let targetUrl = findingsValues.getAccessString();
-    
+
     if (targetUrl === '') {
         targetUrl = `${github.context.serverUrl}/${github.context.repo.owner}/${github.context.repo.repo}/commit/${commitSha}`;
     }

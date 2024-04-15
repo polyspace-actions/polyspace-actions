@@ -1,6 +1,6 @@
 {
   "name": "polyspace-actions",
-  "version": "23.2.0",
+  "version": "24.1.0",
   "description": "Run Polyspace via Github Actions.",
   "scripts": {
     "build:polyspace-bug-finder": "ncc build lib/polyspaceBugFinderWrapper.ts -o dist/polyspaceBugFinder",
