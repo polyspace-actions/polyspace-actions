@@ -1,4 +1,4 @@
-// Copyright 2023 The MathWorks, Inc.
+// Copyright 2023-2024 The MathWorks, Inc.
 
 import fs from 'node:fs';
 import url from 'node:url';
@@ -202,7 +202,7 @@ export class InputPullRequestContextOptions {
 
 // Class to hold all access input options
 export type reviewStatus = 'REQUEST_CHANGES' | 'COMMENT';
-        
+
 function isReviewStatus(str: string): str is reviewStatus {
     switch (str) {
         case 'COMMENT':
@@ -325,4 +325,6 @@ export const ResultsExportOptions = {
     RESOLVE_URI: 'show-resolved-uri',
     FILL_ALL_MSG_TEXT: 'fill-all-message-text',
     SHOW_ACCESS_LINK: 'show-access-link',
+    EXCLUDE_CODE_METRICS: 'exclude-code-metrics',
+    EXCLUDE_RESULTS_WITHOUT_LOCATION: 'exclude-results-without-location',
 };

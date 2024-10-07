@@ -31667,7 +31667,7 @@ exports.isPolyspaceCallableAndRightVersion = exports.getTargetVersion = void 0;
 const spawnProcess_1 = __nccwpck_require__(3989);
 const getCwd_1 = __nccwpck_require__(4209);
 function getTargetVersion() {
-    return 'R2024a';
+    return 'R2024b';
 }
 exports.getTargetVersion = getTargetVersion;
 // and matches its output to get the current polyspace version
@@ -31791,7 +31791,7 @@ exports.logWarning = logWarning;
 
 "use strict";
 
-// Copyright 2023 The MathWorks, Inc.
+// Copyright 2023-2024 The MathWorks, Inc.
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -32009,6 +32009,8 @@ exports.ResultsExportOptions = {
     RESOLVE_URI: 'show-resolved-uri',
     FILL_ALL_MSG_TEXT: 'fill-all-message-text',
     SHOW_ACCESS_LINK: 'show-access-link',
+    EXCLUDE_CODE_METRICS: 'exclude-code-metrics',
+    EXCLUDE_RESULTS_WITHOUT_LOCATION: 'exclude-results-without-location',
 };
 
 
@@ -32224,7 +32226,7 @@ exports.prepareConfigureOptions = prepareConfigureOptions;
 
 "use strict";
 
-// Copyright 2023 The MathWorks, Inc.
+// Copyright 2023-2024 The MathWorks, Inc.
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.prepareResultsExportCommands = void 0;
 const options_1 = __nccwpck_require__(7768);
@@ -32236,7 +32238,7 @@ function prepareResultsExportCommands(exportInputOptions, accessInputOptions) {
     const resultsExportOptions = [];
     resultsExportOptions.push(...[
         options_1.ResultsExportOptions.SARIF_OPTIONS_MODIFIER,
-        `${options_1.ResultsExportOptions.RESOLVE_URI},${options_1.ResultsExportOptions.FILL_ALL_MSG_TEXT},${options_1.ResultsExportOptions.SHOW_ACCESS_LINK}`
+        `${options_1.ResultsExportOptions.RESOLVE_URI},${options_1.ResultsExportOptions.FILL_ALL_MSG_TEXT},${options_1.ResultsExportOptions.SHOW_ACCESS_LINK},${options_1.ResultsExportOptions.EXCLUDE_CODE_METRICS},${options_1.ResultsExportOptions.EXCLUDE_RESULTS_WITHOUT_LOCATION}`
     ]);
     resultsExportOptions.push(...(0, options_1.getOptionPair)(options_1.ResultsExportOptions.FORMAT, options_1.ResultsExportOptions.JSON_SARIF));
     resultsExportOptions.push(...(0, options_1.getOptionPair)(options_1.ResultsExportOptions.OUTPUT_NAME, exportInputOptions.SarifOutputFile));

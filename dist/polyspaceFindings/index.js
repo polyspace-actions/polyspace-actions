@@ -31546,7 +31546,7 @@ exports.matchedResults = matchedResults;
 
 "use strict";
 
-// Copyright 2023 The MathWorks, Inc.
+// Copyright 2023-2024 The MathWorks, Inc.
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -31764,6 +31764,8 @@ exports.ResultsExportOptions = {
     RESOLVE_URI: 'show-resolved-uri',
     FILL_ALL_MSG_TEXT: 'fill-all-message-text',
     SHOW_ACCESS_LINK: 'show-access-link',
+    EXCLUDE_CODE_METRICS: 'exclude-code-metrics',
+    EXCLUDE_RESULTS_WITHOUT_LOCATION: 'exclude-results-without-location',
 };
 
 

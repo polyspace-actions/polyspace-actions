@@ -17,13 +17,16 @@ describe('isPolyspaceCallableAndRightVersion', () => {
     it('Polyspace not on the path', async () => {
         await expect(isPolyspaceCallableAndRightVersion('')).to.eventually.be.rejectedWith(Error);
     });
+    it('polyspace return value not zero ', async () => {
+        await expect(rewiredModule.__get__('getPolyspaceConfigureOutputString')('/usr/local/MATLAB/R2024b',['-invalidArgs'])).to.eventually.be.rejectedWith(Error);
+    });
 
     it('releaseMismatch 23a', () => {
         const ver = rewiredModule.__get__('matchConfigureStringVersion')(' polyspace-configure (R2023a) other noise not interesting');
         chai.expect(ver).to.equal('R2023a');
     });
 
-    it('releaseMismatch 24a', () => {
+    it('releaseMismatch 2024a', () => {
         const ver = rewiredModule.__get__('matchConfigureStringVersion')(' polyspace-configure (R2024a) other noise not interesting');
         chai.expect(ver).to.equal('R2024a');
     });

@@ -1,4 +1,4 @@
-// Copyright 2023 The MathWorks, Inc.
+// Copyright 2023-2024 The MathWorks, Inc.
 
 import {
     getOptionPair,
@@ -17,9 +17,9 @@ export function prepareResultsExportCommands(exportInputOptions: InputResultsExp
 
     resultsExportOptions.push(...[
         ResultsExportOptions.SARIF_OPTIONS_MODIFIER,
-        `${ResultsExportOptions.RESOLVE_URI},${ResultsExportOptions.FILL_ALL_MSG_TEXT},${ResultsExportOptions.SHOW_ACCESS_LINK}`
+        `${ResultsExportOptions.RESOLVE_URI},${ResultsExportOptions.FILL_ALL_MSG_TEXT},${ResultsExportOptions.SHOW_ACCESS_LINK},${ResultsExportOptions.EXCLUDE_CODE_METRICS},${ResultsExportOptions.EXCLUDE_RESULTS_WITHOUT_LOCATION}`
     ]);
-  
+
     resultsExportOptions.push(...getOptionPair(
         ResultsExportOptions.FORMAT,
         ResultsExportOptions.JSON_SARIF,

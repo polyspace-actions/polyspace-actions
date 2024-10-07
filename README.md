@@ -10,8 +10,8 @@ This table describes the available Polyspace actions. Use the appropriate action
 
 |Action | Description |
 |-------|--------------|
-|**[polyspace-bug-finder](https://github.com/polyspace-actions/polyspace-bug-finder)**| Configure and run a Polyspace Bug Finder&trade; Server&trade; analysis and upload results to Polyspace Access (Uploads require Polyspace Access API key). Specify this action as `polyspace-actions/polyspace-bug-finder@24.1.0`.|
-|**[polyspace-findings](https://github.com/polyspace-actions/polyspace-findings)**| Add information about Polyspace analysis findings to your commit when you push changes to the repository or to your pull request. Specify this action as `polyspace-actions/polyspace-findings@24.1.0`.
+|**[polyspace-bug-finder](https://github.com/polyspace-actions/polyspace-bug-finder)**| Configure and run a Polyspace Bug Finder&trade; Server&trade; analysis and upload results to Polyspace Access (Uploads require Polyspace Access API key). Specify this action as `polyspace-actions/polyspace-bug-finder@24.2.0`.|
+|**[polyspace-findings](https://github.com/polyspace-actions/polyspace-findings)**| Add information about Polyspace analysis findings to your commit when you push changes to the repository or to your pull request. Specify this action as `polyspace-actions/polyspace-findings@24.2.0`.
 
 ## Examples
 
@@ -35,7 +35,7 @@ jobs:
     - name: Generate compilation database
       uses: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .
     - name: Analyze
-      uses: polyspace-actions/polyspace-bug-finder@24.1.0
+      uses: polyspace-actions/polyspace-bug-finder@24.2.0
       with:
         compilation-database-file: compile_commands.json
         checkers-file: checkers.xml
@@ -65,7 +65,7 @@ jobs:
     - name: Generate compilation database
       uses: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .
     - name: Analyze pull request
-      uses: polyspace-actions/polyspace-bug-finder@24.1.0
+      uses: polyspace-actions/polyspace-bug-finder@24.2.0
       with:
         polyspace-installation-folder: /opt/Polyspace
         compilation-database-file: compile_commands.json
@@ -97,14 +97,14 @@ jobs:
     - name: Generate compilation database
       uses: cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON .
     - name: Analyze pull request
-      uses: polyspace-actions/polyspace-bug-finder@24.1.0
+      uses: polyspace-actions/polyspace-bug-finder@24.2.0
       with:
         compilation-database-file: compile_commands.json
         checkers-file: checkers.xml
         sarif-file: results.sarif
 
     - name: Annotate the findings to the commit
-      uses: polyspace-actions/polyspace-findings@24.1.0
+      uses: polyspace-actions/polyspace-findings@24.2.0
       with:
         sarif-file: results.sarif
 ```

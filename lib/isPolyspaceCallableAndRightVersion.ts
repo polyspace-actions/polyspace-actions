@@ -4,7 +4,7 @@ import { spawnProcess } from './spawnProcess';
 import { getCwd } from './getCwd';
 
 export function getTargetVersion() {
-    return 'R2024a';
+    return 'R2024b';
 }
 
 // and matches its output to get the current polyspace version
